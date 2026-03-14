@@ -1,23 +1,9 @@
-const { spawn } = require('child_process');
-
-const port = process.env.PORT || '3000';
-
-process.env.OPENCLAW_STATE_DIR = process.env.OPENCLAW_CONFIG_DIR || '/data';
-process.env.OPENCLAW_CONFIG_PATH = (process.env.OPENCLAW_CONFIG_DIR || '/data') + '/config.json';
-
-console.log(`Starting OpenClaw gateway on port ${port}...`);
-
-const gateway = spawn('openclaw', ['gateway', '--port', port, '--no-open'], {
-  stdio: 'inherit',
-  env: process.env
+const http = require('http');
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Cookles Agents - OK');
 });
-
-gateway.on('error', (err) => {
-  console.error('Failed to start gateway:', err);
-  process.exit(1);
-});
-
-gateway.on('close', (code) => {
-  console.log(`Gateway exited with code ${code}`);
-  process.exit(code);
+server.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
