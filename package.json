@@ -1,12 +1,8 @@
 {
   "name": "cookles-agents",
   "version": "1.0.0",
-  "description": "Agentes de marketing digital para Cookles",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
-  },
-  "dependencies": {
-    "openclaw": "latest"
   }
 }
